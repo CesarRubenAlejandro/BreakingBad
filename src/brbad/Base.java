@@ -16,8 +16,8 @@ import java.awt.Image;
 import java.awt.Rectangle;
 
     public class Base {
-    private double posX;    //posicion en x.       
-    private double posY;	//posicion en y.
+    private int posX;    //posicion en x.       
+    private int posY;	//posicion en y.
     protected Animacion anima; // animacion del objeto
 
     /**
@@ -26,7 +26,7 @@ import java.awt.Rectangle;
      * @param posX es la <code>posicion en x</code> del objeto.
      * @param posY es la <code>posicion en y</code> del objeto.
      */
-    public Base(double posX, double posY /*Image image*/) {
+    public Base(int posX, int posY /*Image image*/) {
         this.posX = posX;
         this.posY = posY;
         //icono = new ImageIcon(image);
@@ -37,7 +37,7 @@ import java.awt.Rectangle;
      *
      * @param posX es la <code>posicion en x</code> del objeto.
      */
-    public void setPosX(double posX) {
+    public void setPosX(int posX) {
         this.posX = posX;
     }
 
@@ -55,7 +55,7 @@ import java.awt.Rectangle;
      *
      * @param posY es la <code>posicion en y</code> del objeto.
      */
-    public void setPosY(double posY) {
+    public void setPosY(int posY) {
         this.posY = posY;
     }
 

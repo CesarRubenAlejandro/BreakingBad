@@ -22,7 +22,7 @@ import java.awt.Toolkit;
  * @author Cesar , Angela
  * A01036009, A01139764
  */
-public class BrBad extends JFrame implements Runnable {
+public class BrBad extends JFrame implements Runnable, KeyListener, MouseListener {
 
     // Declarar todas las variables
     private long tiempoActual; //Variables de control de tiempo de la animacion
@@ -83,6 +83,7 @@ public class BrBad extends JFrame implements Runnable {
         //Guarda el tiempo actual
         tiempoActual += tiempoTranscurrido;
         //nubecita.actualiza(tiempoActual);
+        
     }
     
     /**
