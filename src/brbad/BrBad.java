@@ -76,6 +76,7 @@ public class BrBad extends JFrame implements Runnable, KeyListener, MouseListene
     private boolean limiteBarraIzquierda;
     private int bloqX;
     private int bloqY;
+    
 
     private LinkedList list; //lista para bricks
 
@@ -169,6 +170,7 @@ public class BrBad extends JFrame implements Runnable, KeyListener, MouseListene
         bola.setPosY(barra.getPosY() - bola.getAlto());
 
         juegoInicia = false;
+        
         //HILO
         Thread th = new Thread(this);
         // Empieza el hilo
@@ -198,7 +200,7 @@ public class BrBad extends JFrame implements Runnable, KeyListener, MouseListene
             repaint(); // Se actualiza el <code>JFrame</code> repintando el contenido.
             try {
                 // El thread se duerme.
-                Thread.sleep(150);
+                Thread.sleep(80);
             } catch (InterruptedException ex) {
                 System.out.println("Error en " + ex.toString());
             }
@@ -219,6 +221,9 @@ public class BrBad extends JFrame implements Runnable, KeyListener, MouseListene
         tiempoActual += tiempoTranscurrido;
         barra.actualiza(tiempoActual);
         bola.actualiza(tiempoActual);
+        for (int i = 0; i < numBloques; i++) {
+            ((Meth) list.get(i)).actualiza(tiempoActual);
+        }
 
         if (juegoInicia) {
             bola.move();
@@ -228,13 +233,13 @@ public class BrBad extends JFrame implements Runnable, KeyListener, MouseListene
         switch (barra.getDireccion()) {
             case 1: // se mueve a la izquierda
                 if (!limiteBarraIzquierda) {
-                    barra.setPosX(barra.getPosX() - 30);
+                    barra.setPosX(barra.getPosX() - 35);
                 }
 
                 break;
             case 2: // se mueve a la derecha
                 if (!limiteBarraDerecha) {
-                    barra.setPosX(barra.getPosX() + 30);
+                    barra.setPosX(barra.getPosX() + 35);
                 }
                 break;
         }
@@ -243,6 +248,11 @@ public class BrBad extends JFrame implements Runnable, KeyListener, MouseListene
         barra.setDireccion(-1); // detiene al barquito
         limiteBarraIzquierda = false; // reiniciamos para que se pueda mover hacia el lado contrario
         limiteBarraDerecha = false; // reiniciamos para que se pueda mover al lado contrario
+
+        if (score == numBloques) {
+            gano = true;
+            juegoInicia = false;
+        }
     }
 
     /**
@@ -260,62 +270,109 @@ public class BrBad extends JFrame implements Runnable, KeyListener, MouseListene
         }
 
         //Colisiones de la bola
+        //colision con la pared derecha
         if (bola.getPosX() + bola.getAncho() > getWidth()) {
             bola.setMovDerecha();
             if (sonido) {
                 rebota.play();
             }
         }
-
+        // colision con la pared izquierda
         if (bola.getPosX() < 0) {
             bola.setMovDerecha();
             if (sonido) {
                 rebota.play();
             }
         }
-
+        // colision arriba
         if (bola.getPosY() < 10) {
             bola.setMovArriba();
             if (sonido) {
                 rebota.play();
             }
         }
-
+        //colision abajo
         if (bola.getPosY() + bola.getAlto() > getHeight()) {
             vidas--;
             if (sonido) {
                 pierde.play();
             }
         }
-
+        //colision con la barra
         if (bola.intersecta(barra)) {
             if (bola.getPosY() < barra.getPosY()) {
                 bola.setMovArriba();
+                
+                int puntoMedio = barra.getPosX() + barra.getAncho() / 2;
+                int puntoFinal = barra.getPosX() + barra.getAncho();
+                int puntoInicio = barra.getPosX();
+
+                if (bola.getPosX() <= puntoMedio) {
+                    if (bola.getMovDerecha()) {
+                        bola.setMovDerecha();
+                    }
+                bola.setAngulo(0);
+                    bola.setAngulo(( puntoMedio - bola.getPosX()  ))  ;        
+                    
+                }
+
+                if (bola.getPosX() > puntoMedio) {
+                    if (!bola.getMovDerecha()) {
+                        bola.setMovDerecha();
+                    }
+                   // bola.setAngulo( (puntoFinal - (puntoFinal - bola.getPosX() )) - 10  );
+                }
+
                 if (sonido) {
                     rebota.play();
                 }
             }
         }
 
-        //Colision entre objetos
+        //Colision con bloques
         for (int i = 0; i < numBloques; i++) {
             if (bola.intersecta((Meth) list.get(i))) {
                 if (sonido) {
                     destruye.play();
                 }
                 score++;
+
+                if (bola.getPosY() > ((Meth) list.get(i)).getPosY()) {
+                    bola.setMovArriba();
+                }
+
+                if (bola.getPosY() <= ((Meth) list.get(i)).getPosY()) {
+                    bola.setMovArriba();
+                }
+                
+                int puntoMedio =  ((Meth) list.get(i)).getPosX() + ((Meth) list.get(i)).getAncho()/2;
+                
+                 if (bola.getPosX() <= puntoMedio) {
+                    if (bola.getMovDerecha()) {
+                        bola.setMovDerecha();
+                    }
+                }
+
+                if (bola.getPosX() > puntoMedio) {
+                    if (!bola.getMovDerecha()) {
+                        bola.setMovDerecha();
+                    }
+                }
+
                 //Destruir
-                 ((Meth) list.get(i)).setPosX((-1000));
-                 ((Meth) list.get(i)).setPosY((-1000));
+                ((Meth) list.get(i)).setPosX((-1000));
+                ((Meth) list.get(i)).setPosY((-1000));
+
             }
         }
     }
-        /**
-         * Metodo <I>paint</I>
-         * En este metodo lo que hace es actualizar el contenedor (Update)
-         *
-         * @param g es el <code>objeto grafico</code> usado para dibujar.
-         */
+
+    /**
+     * Metodo <I>paint</I>
+     * En este metodo lo que hace es actualizar el contenedor (Update)
+     *
+     * @param g es el <code>objeto grafico</code> usado para dibujar.
+     */
     public void paint(Graphics g) {
         // Inicializan el DoubleBuffer
         if (dbImage == null) {
@@ -474,8 +531,10 @@ public class BrBad extends JFrame implements Runnable, KeyListener, MouseListene
 
         //checa clicks en botones
         if (botonInst.clickEnPersonaje(clickX, clickY)) {
-            Menu = false;
-            Instrucciones = true;
+            if (!juegoInicia) {
+                Menu = false;
+                Instrucciones = true;
+            }
         }
         if (botonIni.clickEnPersonaje(clickX, clickY)) {
             pausa = false;
@@ -483,12 +542,16 @@ public class BrBad extends JFrame implements Runnable, KeyListener, MouseListene
             juegoInicia = true;
         }
         if (botonAj.clickEnPersonaje(clickX, clickY)) {
-            Menu = false;
-            Ajustes = true;
+            if (!juegoInicia) {
+                Menu = false;
+                Ajustes = true;
+            }
         }
         if (botonCre.clickEnPersonaje(clickX, clickY)) {
-            Menu = false;
-            Creditos = true;
+            if (!juegoInicia) {
+                Menu = false;
+                Creditos = true;
+            }
         }
         if (botonBack.clickEnPersonaje(clickX, clickY)) {
             Menu = true;

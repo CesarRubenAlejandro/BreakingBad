@@ -19,12 +19,14 @@ public class Ball extends Base {
     
     private boolean movArriba;
     private boolean movDerecha;
+    private int angulo;
       
     public Ball(int posX, int posY) {
         super(posX, posY);
         
         movArriba = true;
         movDerecha = false;
+        angulo = 0;
 
         URL bURL = this.getClass().getResource("ImagesBall/frame_000.gif");
         Image pic0 = Toolkit.getDefaultToolkit().getImage(bURL);
@@ -98,25 +100,33 @@ public class Ball extends Base {
         return movDerecha;
     }
     
+    public void setAngulo( int x){
+        angulo = x;
+    }
+    
+    public int getAngulo (){
+        return angulo;
+    }
+    
     public void move (){
         if (movArriba && movDerecha){
-            this.setPosX(this.getPosX()+15);
-            this.setPosY(this.getPosY()-15);
+            this.setPosX(this.getPosX()+angulo);
+            this.setPosY(this.getPosY()-10);
         }
         
         if (movArriba && !movDerecha){
-            this.setPosX(this.getPosX()-15);
-            this.setPosY(this.getPosY()-15);
+            this.setPosX(this.getPosX()-angulo);
+            this.setPosY(this.getPosY()-10);
         }
         
         if (!movArriba && movDerecha){
-            this.setPosX(this.getPosX()+15);
-            this.setPosY(this.getPosY()+15);
+            this.setPosX(this.getPosX()+angulo);
+            this.setPosY(this.getPosY()+10);
         }
         
         if (!movArriba && !movDerecha){
-            this.setPosX(this.getPosX()-15);
-            this.setPosY(this.getPosY()+15);
+            this.setPosX(this.getPosX()-angulo);
+            this.setPosY(this.getPosY()+10);
         }
     }
     
