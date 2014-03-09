@@ -311,8 +311,8 @@ public class BrBad extends JFrame implements Runnable, KeyListener, MouseListene
                     if (bola.getMovDerecha()) {
                         bola.setMovDerecha();
                     }
-                bola.setAngulo(0);
-                    bola.setAngulo(( puntoMedio - bola.getPosX()  ))  ;        
+               // bola.setAngulo(0);
+                 //   bola.setAngulo(( puntoMedio - bola.getPosX()  ))  ;        
                     
                 }
 
