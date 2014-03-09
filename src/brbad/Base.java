@@ -46,7 +46,7 @@ import java.awt.Rectangle;
      *
      * @return posX es la <code>posicion en x</code> del objeto.
      */
-    public double getPosX() {
+    public int getPosX() {
         return posX;
     }
 
@@ -64,7 +64,7 @@ import java.awt.Rectangle;
      *
      * @return posY es la <code>posicion en y</code> del objeto.
      */
-    public double getPosY() {
+    public int getPosY() {
         return posY;
     }
 
@@ -99,7 +99,6 @@ import java.awt.Rectangle;
      * objeto en el momento que se pide
      */
     public Image getImagenI() {
-        //return icono.getImage();
         return (new ImageIcon(anima.getImagen())).getImage();
     }
 

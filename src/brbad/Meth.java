@@ -20,37 +20,37 @@ public class Meth extends Base {
     public Meth(int posX, int posY) {
         super(posX, posY);
 
-        URL bURL = this.getClass().getResource("ImagesMeth/frame_100.jpg");
+        URL bURL = this.getClass().getResource("ImagesMeth/meth_100.jpg");
         Image pic0 = Toolkit.getDefaultToolkit().getImage(bURL);
 
-        URL b1URL = this.getClass().getResource("ImagesMeth/frame_101.jpg");
+        URL b1URL = this.getClass().getResource("ImagesMeth/meth_101.jpg");
         Image pic1 = Toolkit.getDefaultToolkit().getImage(b1URL);
 
-        URL b2URL = this.getClass().getResource("ImagesMeth/frame_102.jpg");
+        URL b2URL = this.getClass().getResource("ImagesMeth/meth_102.jpg");
         Image pic2 = Toolkit.getDefaultToolkit().getImage(b2URL);
 
-        URL b3URL = this.getClass().getResource("ImagesMeth/frame_103.jpg");
+        URL b3URL = this.getClass().getResource("ImagesMeth/meth_103.jpg");
         Image pic3 = Toolkit.getDefaultToolkit().getImage(b3URL);
   
-        URL b4URL = this.getClass().getResource("ImagesMeth/frame_104.jpg");
+        URL b4URL = this.getClass().getResource("ImagesMeth/meth_104.jpg");
         Image pic4 = Toolkit.getDefaultToolkit().getImage(b4URL);
         
-        URL b5URL = this.getClass().getResource("ImagesMeth/frame_105.jpg");
+        URL b5URL = this.getClass().getResource("ImagesMeth/meth_105.jpg");
         Image pic5 = Toolkit.getDefaultToolkit().getImage(b5URL);
         
-        URL b6URL = this.getClass().getResource("ImagesMeth/frame_106.jpg");
+        URL b6URL = this.getClass().getResource("ImagesMeth/meth_106.jpg");
         Image pic6 = Toolkit.getDefaultToolkit().getImage(b6URL);
         
-        URL b7URL = this.getClass().getResource("ImagesMeth/frame_107.jpg");
+        URL b7URL = this.getClass().getResource("ImagesMeth/meth_107.jpg");
         Image pic7 = Toolkit.getDefaultToolkit().getImage(b7URL);
         
-        URL b8URL = this.getClass().getResource("ImagesMeth/frame_108.jpg");
+        URL b8URL = this.getClass().getResource("ImagesMeth/meth_108.jpg");
         Image pic8 = Toolkit.getDefaultToolkit().getImage(b8URL);
         
-        URL b9URL = this.getClass().getResource("ImagesMeth/frame_109.jpg");
+        URL b9URL = this.getClass().getResource("ImagesMeth/meth_109.jpg");
         Image pic9 = Toolkit.getDefaultToolkit().getImage(b9URL);
         
-        URL b10URL = this.getClass().getResource("ImagesMeth/frame_110.jpg");
+        URL b10URL = this.getClass().getResource("ImagesMeth/meth_110.jpg");
         Image pic10 = Toolkit.getDefaultToolkit().getImage(b10URL);
         
         anima = new Animacion();

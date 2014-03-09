@@ -22,19 +22,24 @@ public class Bar extends Base {
     public Bar(int posX, int posY) {
         super(posX, posY);
 
-        URL bURL = this.getClass().getResource("ImagesBar/frame_000.gif");
+        URL bURL = this.getClass().getResource("ImagesCar/frame_000.png");
         Image pic0 = Toolkit.getDefaultToolkit().getImage(bURL);
 
-        URL b1URL = this.getClass().getResource("ImagesBar/frame_001.gif");
+        URL b1URL = this.getClass().getResource("ImagesCar/frame_001.png");
         Image pic1 = Toolkit.getDefaultToolkit().getImage(b1URL);
 
-        URL b2URL = this.getClass().getResource("ImagesBar/frame_002.gif");
+        URL b2URL = this.getClass().getResource("ImagesCar/frame_002.png");
         Image pic2 = Toolkit.getDefaultToolkit().getImage(b2URL);
+
+        URL b3URL = this.getClass().getResource("ImagesCar/frame_003.png");
+        Image pic3 = Toolkit.getDefaultToolkit().getImage(b2URL);
 
         anima = new Animacion();
         anima.sumaCuadro(pic0, 200);
         anima.sumaCuadro(pic1, 200);
         anima.sumaCuadro(pic2, 200);
+        anima.sumaCuadro(pic3, 200);
+
 
         direccion = -1;
     }

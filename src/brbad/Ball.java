@@ -16,9 +16,15 @@ import java.awt.Toolkit;
 import java.net.URL;
 
 public class Ball extends Base {
+    
+    private boolean movArriba;
+    private boolean movDerecha;
       
     public Ball(int posX, int posY) {
         super(posX, posY);
+        
+        movArriba = true;
+        movDerecha = false;
 
         URL bURL = this.getClass().getResource("ImagesBall/frame_000.gif");
         Image pic0 = Toolkit.getDefaultToolkit().getImage(bURL);
@@ -76,6 +82,43 @@ public class Ball extends Base {
         anima.sumaCuadro(pic12, 200);
     }
     
+    public void setMovArriba (){
+        movArriba = !movArriba;
+    }
+    
+    public void setMovDerecha() {
+        movDerecha = !movDerecha;
+    }
+    
+    public boolean getMovArriba() {
+        return movArriba;
+    }
+    
+    public boolean getMovDerecha() {
+        return movDerecha;
+    }
+    
+    public void move (){
+        if (movArriba && movDerecha){
+            this.setPosX(this.getPosX()+15);
+            this.setPosY(this.getPosY()-15);
+        }
+        
+        if (movArriba && !movDerecha){
+            this.setPosX(this.getPosX()-15);
+            this.setPosY(this.getPosY()-15);
+        }
+        
+        if (!movArriba && movDerecha){
+            this.setPosX(this.getPosX()+15);
+            this.setPosY(this.getPosY()+15);
+        }
+        
+        if (!movArriba && !movDerecha){
+            this.setPosX(this.getPosX()-15);
+            this.setPosY(this.getPosY()+15);
+        }
+    }
     
     
 }
