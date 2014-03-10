@@ -48,7 +48,6 @@ public class BrBad extends JFrame implements Runnable, KeyListener, MouseListene
     private Image pantallaCreditos;
     private Image pantallaPausa;
     private Image pantallaInicio;
-    private Image back;
     //sonidos
     private SoundClip rebota;
     private SoundClip destruye;
@@ -200,7 +199,7 @@ public class BrBad extends JFrame implements Runnable, KeyListener, MouseListene
             repaint(); // Se actualiza el <code>JFrame</code> repintando el contenido.
             try {
                 // El thread se duerme.
-                Thread.sleep(80);
+                Thread.sleep(50);
             } catch (InterruptedException ex) {
                 System.out.println("Error en " + ex.toString());
             }
@@ -278,7 +277,7 @@ public class BrBad extends JFrame implements Runnable, KeyListener, MouseListene
             }
         }
         // colision con la pared izquierda
-        if (bola.getPosX() < 0) {
+        if (bola.getPosX() <= 0) {
             bola.setMovDerecha();
             if (sonido) {
                 rebota.play();
@@ -554,10 +553,18 @@ public class BrBad extends JFrame implements Runnable, KeyListener, MouseListene
             }
         }
         if (botonBack.clickEnPersonaje(clickX, clickY)) {
+            if (vidas==0 || gano) 
+            {
+                vidas=1;
+                gano = false;
+            }
             Menu = true;
             Instrucciones = false;
             Ajustes = false;
             Creditos = false;
+            juegoInicia=false;
+            
+            
         }
 
     }
