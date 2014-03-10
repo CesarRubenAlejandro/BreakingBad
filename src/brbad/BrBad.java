@@ -76,6 +76,8 @@ public class BrBad extends JFrame implements Runnable, KeyListener, MouseListene
     private int bloqX;
     private int bloqY;
     
+    private int auxVelocidad;
+    
 
     private LinkedList list; //lista para bricks
 
@@ -89,6 +91,7 @@ public class BrBad extends JFrame implements Runnable, KeyListener, MouseListene
         bloqX = 70;
         bloqY = 110;
         list = new LinkedList();
+        auxVelocidad = 0;
         //int contador = 0;
 
         for (int i = 0; i < 10; i++) {
@@ -251,7 +254,7 @@ public class BrBad extends JFrame implements Runnable, KeyListener, MouseListene
             repaint(); // Se actualiza el <code>JFrame</code> repintando el contenido.
             try {
                 // El thread se duerme.
-                Thread.sleep(50);
+                Thread.sleep(80);
             } catch (InterruptedException ex) {
                 System.out.println("Error en " + ex.toString());
             }
@@ -322,7 +325,7 @@ public class BrBad extends JFrame implements Runnable, KeyListener, MouseListene
 
         //Colisiones de la bola
         //colision con la pared derecha
-        if (bola.getPosX() + bola.getAncho() > getWidth()) {
+        if (bola.getPosX() + bola.getAncho() >= getWidth()) {
             bola.setMovDerecha();
             if (sonido) {
                 rebota.play();
@@ -361,9 +364,7 @@ public class BrBad extends JFrame implements Runnable, KeyListener, MouseListene
                 if (bola.getPosX() <= puntoMedio) {
                     if (bola.getMovDerecha()) {
                         bola.setMovDerecha();
-                    }
-             //   bola.setAngulo(0);
-              //  bola.setAngulo(( puntoMedio - bola.getPosX()  ))  ;        
+                    }       
                     
                 }
 
@@ -371,7 +372,6 @@ public class BrBad extends JFrame implements Runnable, KeyListener, MouseListene
                     if (!bola.getMovDerecha()) {
                         bola.setMovDerecha();
                     }
-              //  bola.setAngulo( ((puntoFinal - bola.getPosX() )) - 10  );
                 }
 
                 if (sonido) {

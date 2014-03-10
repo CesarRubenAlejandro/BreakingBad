@@ -26,7 +26,7 @@ public class Ball extends Base {
         
         movArriba = true;
         movDerecha = false;
-        angulo = (int) (Math.random()* (15-3)) + 3;
+        angulo = (int) (Math.random()* (12-3)) + 3;
 
         URL bURL = this.getClass().getResource("ImagesBall/frame_000.gif");
         Image pic0 = Toolkit.getDefaultToolkit().getImage(bURL);
