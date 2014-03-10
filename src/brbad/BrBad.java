@@ -175,7 +175,72 @@ public class BrBad extends JFrame implements Runnable, KeyListener, MouseListene
         // Empieza el hilo
         th.start();
     }
+    
+    /**
+     * Reset - limpia y prepara todo para el inicio del nuevo juego. 
+     */
+    public void reset() {
+        numBloques = 30; //crear bloques de metanfetaminas
+        bloqX = 70;
+        bloqY = 110;
+        
+        for (int i = 0; i < 10; i++) {
+       //   block = new Meth(bloqX, bloqY);
+            
+            ((Meth) list.get(i)).setPosX((bloqX));
+            ((Meth) list.get(i)).setPosY((bloqY));
+            bloqX += 65;
+      //    list.add(block);
+        }
+        bloqX = 70;
+        bloqY += 70;
+        for (int i = 10; i < 20; i++) {
+         // block = new Meth(bloqX, bloqY);
+           
+            ((Meth) list.get(i)).setPosX((bloqX));
+            ((Meth) list.get(i)).setPosY((bloqY));
+             bloqX += 65;
+         // list.add(block);
+        }
+        bloqX = 70;
+        bloqY += 70;
+        for (int i = 20; i < 30; i++) {
+        //    block = new Meth(bloqX, bloqY);
+            
+            ((Meth) list.get(i)).setPosX((bloqX));
+            ((Meth) list.get(i)).setPosY((bloqY));
+            bloqX += 65;
+        //    list.add(block);
+        }
 
+        score = 0; //el score inicia en 0
+        vidas = 1; //solo hay 1 vida en el juego
+        
+         //inicializar variables booleanas 
+        gano = false;
+        Menu = true;
+        Ajustes = false;
+        Creditos = false;
+        Instrucciones = false;
+        limiteBarraDerecha = false;
+        limiteBarraIzquierda = false;
+        
+        //reposicionar barra al centro abajo del JFrame
+        barra.setPosX((getWidth() / 2) - (barra.getAncho() / 2));
+        barra.setPosY(getHeight() - barra.getAlto());
+        
+        //reposicionarla sobre la barra
+        bola.setPosX(getWidth() / 2);
+        bola.setPosY(barra.getPosY() - bola.getAlto());
+
+        juegoInicia = false;
+        //HILO
+        Thread th = new Thread(this);
+        // Empieza el hilo
+        th.start();
+         
+    }
+    
     /**
      * Metodo <I>run</I> sobrescrito de la clase <code>Thread</code>.<P>
      * En este metodo se ejecuta el hilo, es un ciclo indefinido donde se
@@ -310,8 +375,8 @@ public class BrBad extends JFrame implements Runnable, KeyListener, MouseListene
                     if (bola.getMovDerecha()) {
                         bola.setMovDerecha();
                     }
-               // bola.setAngulo(0);
-                 //   bola.setAngulo(( puntoMedio - bola.getPosX()  ))  ;        
+             //   bola.setAngulo(0);
+              //  bola.setAngulo(( puntoMedio - bola.getPosX()  ))  ;        
                     
                 }
 
@@ -319,7 +384,7 @@ public class BrBad extends JFrame implements Runnable, KeyListener, MouseListene
                     if (!bola.getMovDerecha()) {
                         bola.setMovDerecha();
                     }
-                   // bola.setAngulo( (puntoFinal - (puntoFinal - bola.getPosX() )) - 10  );
+              //  bola.setAngulo( ((puntoFinal - bola.getPosX() )) - 10  );
                 }
 
                 if (sonido) {
@@ -361,7 +426,8 @@ public class BrBad extends JFrame implements Runnable, KeyListener, MouseListene
                 //Destruir
                 ((Meth) list.get(i)).setPosX((-1000));
                 ((Meth) list.get(i)).setPosY((-1000));
-
+             //   Meth block = (Meth) list.get(i);
+             //   list.remove(block);
             }
         }
     }
@@ -557,6 +623,7 @@ public class BrBad extends JFrame implements Runnable, KeyListener, MouseListene
             {
                 vidas=1;
                 gano = false;
+                reset();
             }
             Menu = true;
             Instrucciones = false;
