@@ -185,43 +185,29 @@ public class BrBad extends JFrame implements Runnable, KeyListener, MouseListene
         bloqY = 110;
         
         for (int i = 0; i < 10; i++) {
-       //   block = new Meth(bloqX, bloqY);
-            
             ((Meth) list.get(i)).setPosX((bloqX));
             ((Meth) list.get(i)).setPosY((bloqY));
             bloqX += 65;
-      //    list.add(block);
         }
         bloqX = 70;
         bloqY += 70;
         for (int i = 10; i < 20; i++) {
-         // block = new Meth(bloqX, bloqY);
-           
             ((Meth) list.get(i)).setPosX((bloqX));
             ((Meth) list.get(i)).setPosY((bloqY));
              bloqX += 65;
-         // list.add(block);
         }
         bloqX = 70;
         bloqY += 70;
         for (int i = 20; i < 30; i++) {
-        //    block = new Meth(bloqX, bloqY);
-            
             ((Meth) list.get(i)).setPosX((bloqX));
             ((Meth) list.get(i)).setPosY((bloqY));
             bloqX += 65;
-        //    list.add(block);
         }
 
         score = 0; //el score inicia en 0
         vidas = 1; //solo hay 1 vida en el juego
         
-         //inicializar variables booleanas 
-        gano = false;
-        Menu = true;
-        Ajustes = false;
-        Creditos = false;
-        Instrucciones = false;
+         //inicializar variables booleanas
         limiteBarraDerecha = false;
         limiteBarraIzquierda = false;
         
