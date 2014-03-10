@@ -109,6 +109,7 @@ public class BrBad extends JFrame implements Runnable, KeyListener, MouseListene
             block = new Meth(bloqX, bloqY);
             bloqX += 65;
             list.add(block);
+            
         }
 
         score = 0; //el score inicia en 0
